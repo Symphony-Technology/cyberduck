@@ -31,6 +31,28 @@ public class CertificateStoreX509TrustManagerTest {
         m.checkServerTrusted(new X509Certificate[]{cert}, "RSA");
     }
 
+    @Test
+    public void testTrustedChainIsRecheckedForAnotherHostname() throws Exception {
+        final CertificateStoreX509TrustManager manager = new CertificateStoreX509TrustManager(
+                new DisabledCertificateTrustCallback(), new TrustManagerHostnameCallback() {
+            @Override
+            public String getTarget() {
+                return "cyberduck.ch";
+            }
+        }, new DisabledCertificateStore() {
+            @Override
+            public boolean verify(final CertificateTrustCallback prompt, final String hostname, final List<X509Certificate> certificates) {
+                return "cyberduck.ch".equals(hostname);
+            }
+        });
+        try(InputStream resource = new FileInputStream("src/test/resources/OXxlRDVcWqdPEvFm.cer")) {
+            final X509Certificate certificate = (X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(resource);
+            manager.verify("cyberduck.ch", new X509Certificate[]{certificate}, "RSA");
+            org.junit.Assert.assertThrows(CertificateException.class,
+                    () -> manager.verify("wrong.example", new X509Certificate[]{certificate}, "RSA"));
+        }
+    }
+
     @Test(expected = CertificateException.class)
     public void testCheckServerTrustedFailure() throws Exception {
         final CertificateStoreX509TrustManager m = new CertificateStoreX509TrustManager(new DisabledCertificateTrustCallback(), new TrustManagerHostnameCallback() {

@@ -124,7 +124,7 @@
         <key>CFBundleIconFile</key>
         <string>cyberduck-application-rect.icns</string>
         <key>CFBundleIdentifier</key>
-        <string>ch.sudo.cyberduck</string>
+        <string>com.symphonytechnology.cyberduck</string>
         <key>CFBundleInfoDictionaryVersion</key>
         <string>6.0</string>
         <key>CFBundleName</key>
@@ -272,8 +272,6 @@
         <string>D1yy51xz2srTusjF9o4yb9C6v3oJTIJEvcmdPuwY8gY=</string>
         <key>SUExpectsDSASignature</key>
         <true/>
-        <key>SUFeedURL</key>
-        <string>${SPARKLEFEED}</string>
         <key>SUEnableAutomaticChecks</key>
         <false/>
         <key>NSDockTilePlugIn</key>

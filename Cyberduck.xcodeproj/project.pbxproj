@@ -4273,7 +4273,7 @@
 					"-framework",
 					Sparkle,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ch.sudo.cyberduck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.symphonytechnology.cyberduck;
 				PRODUCT_NAME = Cyberduck;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4498,7 +4498,7 @@
 					"@loader_path/../Frameworks",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ch.sudo.cyberduck;
+				PRODUCT_BUNDLE_IDENTIFIER = com.symphonytechnology.cyberduck;
 				PRODUCT_NAME = Cyberduck;
 				WRAPPER_EXTENSION = app;
 			};
