@@ -11,6 +11,7 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 public class KeychainCertificateStoreTest {
 
@@ -80,7 +81,8 @@ public class KeychainCertificateStoreTest {
         InputStream inStream = new FileInputStream("src/test/resources/untrusted-root.cer");
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         final X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream);
-        assertFalse(k.verify(new DisabledCertificateTrustCallback(), "untrusted-root.badssl.com", Collections.singletonList(cert)));
+        assertFalse(k.verify((hostname, certificates) -> fail("An untrusted certificate must not prompt for an exception"),
+                "untrusted-root.badssl.com", Collections.singletonList(cert)));
     }
 
     @Test
