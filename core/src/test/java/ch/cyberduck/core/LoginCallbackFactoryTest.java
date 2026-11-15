@@ -60,7 +60,7 @@ public class LoginCallbackFactoryTest {
         }
     }
 
-    final static class TestLoginCallback implements LoginCallback {
+    public static final class TestLoginCallback implements LoginCallback {
         public TestLoginCallback(TestBrowserController controller) {
         }
 
